@@ -1,0 +1,9 @@
+.mat-table {
+  width: 100%;
+  &.table-controls {
+    th:last-child,
+    td:last-child {
+      text-align: right;
+    }
+  }
+}

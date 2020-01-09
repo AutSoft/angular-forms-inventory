@@ -1,3 +1,4 @@
+import { MatPaginatorModule, MatSortModule, MatTableModule, MatTooltipModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -31,6 +32,10 @@ import { ItemComponent } from './item/item.component';
       MatIconModule,
       MatCardModule,
       MatTabsModule,
+      MatTableModule,
+      MatPaginatorModule,
+      MatSortModule,
+      MatTooltipModule
    ],
    providers: [],
    bootstrap: [
