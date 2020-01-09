@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://autsoftangular.azurewebsites.net",
+    "changeOrigin": true
+  }
+}

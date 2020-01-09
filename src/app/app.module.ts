@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ItemComponent } from './item/item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
    declarations: [
@@ -35,7 +36,8 @@ import { ItemComponent } from './item/item.component';
       MatTableModule,
       MatPaginatorModule,
       MatSortModule,
-      MatTooltipModule
+      MatTooltipModule,
+      HttpClientModule
    ],
    providers: [],
    bootstrap: [

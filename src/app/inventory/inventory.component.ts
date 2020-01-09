@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatSort, MatPaginator } from '@angular/material';
+import { Item } from '../models/item';
+import { InventoryService } from '../services/inventory.service';
 
 @Component({
   selector: 'app-inventory',
@@ -8,17 +10,15 @@ import { MatSort, MatPaginator } from '@angular/material';
 })
 export class InventoryComponent implements OnInit, AfterViewInit {
   displayedColumns = ['id', 'name', 'description', 'count', 'controls'];
-  data = [
-    { id: 1, name: 'name', description: 'description', count: 3},
-    { id: 2, name: 'name', description: 'description', count: 4},
-  ];
+  data: Item[] = [];
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor() { }
+  constructor(private inventoryService: InventoryService) { }
 
   ngOnInit() {
+    this.inventoryService.getItems().subscribe(result => this.data = result.results);
   }
 
   ngAfterViewInit(): void {
