@@ -3,6 +3,8 @@ import { PagingResult } from '../models/paging-result';
 import { Item } from '../models/item';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { plainToClass } from 'class-transformer';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,9 @@ export class InventoryService {
       params: new HttpParams()
         .append('pageSize', pageSize.toString())
         .append('page', page.toString())
-    });
+    }).pipe(map(result => {
+      result.results = result.results.map(i => plainToClass(Item, i));
+      return result;
+    }));
   }
 }

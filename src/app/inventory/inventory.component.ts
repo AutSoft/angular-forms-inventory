@@ -9,13 +9,13 @@ import { InventoryService } from '../services/inventory.service';
   styleUrls: ['./inventory.component.scss']
 })
 export class InventoryComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'name', 'description', 'count', 'controls'];
+  displayedColumns = ['id', 'name', 'description', 'count', 'countDate', 'controls'];
   data: Item[] = [];
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(private inventoryService: InventoryService) {}
 
   ngOnInit() {
     this.inventoryService.getItems().subscribe(result => this.data = result.results);
