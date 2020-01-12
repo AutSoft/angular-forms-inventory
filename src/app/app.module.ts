@@ -15,6 +15,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ItemComponent } from './item/item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { API_BASE_URL } from './api/inventory.generated';
 
 @NgModule({
    declarations: [
@@ -24,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
       ItemComponent
    ],
    imports: [
-      BrowserModule,
+   BrowserModule,
       AppRoutingModule,
       BrowserAnimationsModule,
       FlexLayoutModule,
@@ -39,7 +40,12 @@ import { HttpClientModule } from '@angular/common/http';
       MatTooltipModule,
       HttpClientModule
    ],
-   providers: [],
+   providers: [
+     {
+       provide: API_BASE_URL,
+       useValue: '/api'
+     }
+   ],
    bootstrap: [
       AppComponent
    ]
