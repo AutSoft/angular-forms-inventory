@@ -1,4 +1,4 @@
-import { MatPaginatorModule, MatSortModule, MatTableModule, MatTooltipModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatTableModule, MatTooltipModule, MatProgressSpinnerModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -38,7 +38,8 @@ import { API_BASE_URL } from './api/inventory.generated';
       MatPaginatorModule,
       MatSortModule,
       MatTooltipModule,
-      HttpClientModule
+      HttpClientModule,
+      MatProgressSpinnerModule
    ],
    providers: [
      {
