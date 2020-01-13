@@ -10,6 +10,7 @@ import { Item, InventoryClient } from '../api/inventory.generated';
 })
 export class ItemComponent implements OnInit {
   itemForm: FormGroup;
+  itemId: number;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private inventoryClient: InventoryClient) {
     this.itemForm = new FormGroup({
@@ -17,17 +18,34 @@ export class ItemComponent implements OnInit {
       type: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       description: new FormControl('', Validators.required)
     });
+
+    this.activatedRoute.params.subscribe(params => {
+      if (params.id) {
+        this.itemId = params.id;
+        this.loadItem();
+      } else {
+        this.itemForm.reset();
+      }
+    });
   }
 
-  ngOnInit() {
-    console.log(this.activatedRoute.snapshot.params.id);
-  }
+  ngOnInit() {  }
 
   save() {
     const requestModel = new Item(this.itemForm.value);
-    this.inventoryClient.createItem(requestModel).subscribe(
-      () => this.router.navigate(['..'], { relativeTo: this.activatedRoute })
-    );
+    if (this.itemId) {
+      this.inventoryClient.updateItem(this.itemId, requestModel).subscribe(
+        () => this.router.navigate(['/'])
+      );
+    } else {
+      this.inventoryClient.createItem(requestModel).subscribe(
+        () => this.router.navigate(['..'], { relativeTo: this.activatedRoute })
+      );
+    }
+  }
+
+  private loadItem() {
+    this.inventoryClient.getItemsById(this.itemId).subscribe(item => this.itemForm.patchValue(item));
   }
 
 }
