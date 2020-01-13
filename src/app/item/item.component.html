@@ -41,7 +41,30 @@
           </mat-tab>
           <mat-tab label="Details">
             <p>Details of the selected item.</p>
-            <p>...</p>
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutGap="1rem">
+                <mat-form-field fxFlex>
+                  <input type="number" formControlName="count" matInput placeholder="Count">
+                  <mat-error *ngIf="itemForm.get('count').hasError('required')">
+                    Count is required
+                  </mat-error>
+                  <mat-error *ngIf="itemForm.get('count').hasError('min')">
+                    Count must be non-negative
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <input formControlName="countDate" matInput placeholder="Count Date" [matDatepicker]="picker">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="itemForm.get('countDate').hasError('required')">
+                    Count date is required
+                  </mat-error>
+                  <mat-error *ngIf="itemForm.get('countDate').hasError('weekend')">
+                    Aw, weekend
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
           </mat-tab>
         </mat-tab-group>
       </form>

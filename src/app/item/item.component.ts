@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Item, InventoryClient } from '../api/inventory.generated';
+import { CustomValidators } from '../custom-validators';
 
 @Component({
   selector: 'app-item',
@@ -14,9 +15,11 @@ export class ItemComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private inventoryClient: InventoryClient) {
     this.itemForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-      type: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      description: new FormControl('', Validators.required)
+      name: new FormControl(undefined, [Validators.required, Validators.maxLength(20)]),
+      type: new FormControl(undefined, [Validators.required, Validators.maxLength(50)]),
+      description: new FormControl(undefined, Validators.required),
+      count: new FormControl(undefined, [Validators.required, Validators.min(0)]),
+      countDate: new FormControl(undefined, [Validators.required, CustomValidators.onlyWeekDays])
     });
 
     this.activatedRoute.params.subscribe(params => {
