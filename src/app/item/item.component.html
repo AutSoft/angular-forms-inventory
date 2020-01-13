@@ -65,6 +65,33 @@
                 </mat-form-field>
               </div>
             </div>
+            <div fxLayout="row" fxLayoutGap="1rem">
+              <mat-slide-toggle labelPosition="before" [formControl]="dimensionToggleControl">
+                Dimension data:
+              </mat-slide-toggle>
+            </div>
+            <div fxLayout="row" fxLayoutGap="1rem" formGroupName="dimension">
+              <mat-form-field fxFlex>
+                <input type="number" formControlName="width" matInput placeholder="Width" [errorStateMatcher]="customErrorMatcher">
+                <mat-error *ngIf="itemForm.get('dimension').hasError('invalidvolume')">
+                  Non-volumetric shape
+                </mat-error>
+              </mat-form-field>
+              <mat-icon fxFlexAlign="center">clear</mat-icon>
+              <mat-form-field fxFlex>
+                <input type="number" formControlName="height" matInput placeholder="Height" [errorStateMatcher]="customErrorMatcher">
+                <mat-error *ngIf="itemForm.get('dimension').hasError('invalidvolume')">
+                  Non-volumetric shape
+                </mat-error>
+              </mat-form-field>
+              <mat-icon fxFlexAlign="center">clear</mat-icon>
+              <mat-form-field fxFlex>
+                <input type="number" formControlName="depth" matInput placeholder="Depth" [errorStateMatcher]="customErrorMatcher">
+                <mat-error *ngIf="itemForm.get('dimension').hasError('invalidvolume')">
+                  Non-volumetric shape
+                </mat-error>
+              </mat-form-field>
+            </div>
           </mat-tab>
         </mat-tab-group>
       </form>
