@@ -4,20 +4,36 @@
       <mat-card-title>Item details</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-tab-group>
-        <mat-tab label="Basic">
-          <p>Basic data of the selected item.</p>
-          <p>...</p>
-        </mat-tab>
-        <mat-tab label="Details">
-          <p>Details of the selected item.</p>
-          <p>...</p>
-        </mat-tab>
-      </mat-tab-group>
+      <form [formGroup]="itemForm">
+        <mat-tab-group>
+          <mat-tab label="Basic">
+            <p>Basic data of the selected item.</p>
+            <div fxLayout="column">
+              <div fxLayout="row" fxLayoutGap="1rem">
+                <mat-form-field fxFlex>
+                  <input formControlName="name" matInput placeholder="Name" >
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <input formControlName="type" matInput placeholder="Type" >
+                </mat-form-field>
+              </div>
+
+              <mat-form-field>
+                <textarea formControlName="description" matInput placeholder="Description" rows="5"></textarea>
+              </mat-form-field>
+
+            </div>
+          </mat-tab>
+          <mat-tab label="Details">
+            <p>Details of the selected item.</p>
+            <p>...</p>
+          </mat-tab>
+        </mat-tab-group>
+      </form>
     </mat-card-content>
     <mat-card-actions fxLayout="row-reverse">
       <button mat-button routerLink="/">Cancel</button>
-      <button mat-button>Save</button>
+      <button mat-button (click)="save()">Save</button>
     </mat-card-actions>
   </mat-card>
 </div>

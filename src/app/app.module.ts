@@ -1,4 +1,4 @@
-import { MatPaginatorModule, MatSortModule, MatTableModule, MatTooltipModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatTableModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,6 +16,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ItemComponent } from './item/item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { API_BASE_URL } from './api/inventory.generated';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
    declarations: [
@@ -39,6 +40,9 @@ import { API_BASE_URL } from './api/inventory.generated';
       MatSortModule,
       MatTooltipModule,
       HttpClientModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatInputModule,
       MatProgressSpinnerModule
    ],
    providers: [
