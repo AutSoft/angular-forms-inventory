@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { Item, InventoryClient, Currency } from '../api/inventory.generated';
 import { CustomValidators } from '../custom-validators';
 import { CustomErrorStateMatcher } from '../custom-error-state-matcher';
@@ -18,6 +20,7 @@ export class ItemComponent implements OnInit {
   currencies: { value: number, label: string }[] = Object.keys(Currency)
     .filter(x => !isNaN(+x))
     .map(x => ({ value: +x, label: Currency[x] as string }));
+  typeItems: Observable<string[]>;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private inventoryClient: InventoryClient) {
     this.itemForm = new FormGroup({
@@ -49,7 +52,15 @@ export class ItemComponent implements OnInit {
     });
   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.typeItems = this.itemForm.controls.type.valueChanges
+      .pipe(
+        filter(x => !!x && x.length >= 3),
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap(term => this.inventoryClient.typeaheadType(term))
+      );
+  }
 
   save() {
     const requestModel = new Item(this.itemForm.value);

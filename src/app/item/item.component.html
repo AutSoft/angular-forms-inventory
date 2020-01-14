@@ -20,7 +20,12 @@
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field fxFlex>
-                  <input formControlName="type" matInput placeholder="Type" >
+                  <input formControlName="type" matInput placeholder="Type" [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let item of (typeItems | async)" [value]="item">
+                      {{ item }}
+                    </mat-option>
+                  </mat-autocomplete>
                   <mat-error *ngIf="itemForm.get('type').hasError('required')">
                     Type is required
                   </mat-error>

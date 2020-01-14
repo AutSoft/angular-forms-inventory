@@ -9,7 +9,7 @@ import {
   MatNativeDateModule,
   MatSlideToggleModule,
   MatProgressSpinnerModule,
-  MatSelectModule
+  MatSelectModule, MatAutocompleteModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -61,7 +61,8 @@ import { PriceInputComponent } from './price-input/price-input.component';
     MatNativeDateModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   providers: [
   {
