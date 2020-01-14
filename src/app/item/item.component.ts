@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Item, InventoryClient } from '../api/inventory.generated';
+import { Item, InventoryClient, Currency } from '../api/inventory.generated';
 import { CustomValidators } from '../custom-validators';
 import { CustomErrorStateMatcher } from '../custom-error-state-matcher';
 
@@ -15,6 +15,9 @@ export class ItemComponent implements OnInit {
   itemId: number;
   dimensionToggleControl = new FormControl();
   customErrorMatcher: CustomErrorStateMatcher;
+  currencies: { value: number, label: string }[] = Object.keys(Currency)
+    .filter(x => !isNaN(+x))
+    .map(x => ({ value: +x, label: Currency[x] as string }));
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private inventoryClient: InventoryClient) {
     this.itemForm = new FormGroup({
@@ -27,7 +30,8 @@ export class ItemComponent implements OnInit {
         width: new FormControl(),
         height: new FormControl(),
         depth: new FormControl(),
-      }, CustomValidators.validVolume)
+      }, CustomValidators.validVolume),
+      price: new FormControl()
     });
 
     this.customErrorMatcher = new CustomErrorStateMatcher(this.itemForm.get('dimension'));

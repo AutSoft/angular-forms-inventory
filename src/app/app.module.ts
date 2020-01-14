@@ -1,4 +1,16 @@
-import { MatPaginatorModule, MatSortModule, MatTableModule, MatTooltipModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSlideToggleModule, MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
+  MatTooltipModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSlideToggleModule,
+  MatProgressSpinnerModule,
+  MatSelectModule
+} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -17,15 +29,17 @@ import { ItemComponent } from './item/item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { API_BASE_URL } from './api/inventory.generated';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PriceInputComponent } from './price-input/price-input.component';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      NavComponent,
-      InventoryComponent,
-      ItemComponent
-   ],
-   imports: [
+  declarations: [
+    AppComponent,
+    NavComponent,
+    InventoryComponent,
+    ItemComponent,
+    PriceInputComponent
+  ],
+  imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -46,16 +60,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSlideToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
   ],
   providers: [
-    {
-      provide: API_BASE_URL,
-      useValue: '/api'
-    }
+  {
+    provide: API_BASE_URL,
+    useValue: '/api'
+  }
   ],
   bootstrap: [
-    AppComponent
+  AppComponent
   ]
 })
 export class AppModule { }

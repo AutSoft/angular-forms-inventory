@@ -92,6 +92,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
+            <div fxLayout="row">
+              <app-price-input formControlName="price" fxFlex [currencies]="currencies"></app-price-input>
+            </div>
           </mat-tab>
         </mat-tab-group>
       </form>
