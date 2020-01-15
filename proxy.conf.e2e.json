@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://autsoftangulare2e.azurewebsites.net/",
+    "changeOrigin": true
+  }
+}

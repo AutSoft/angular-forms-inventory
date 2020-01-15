@@ -92,6 +92,9 @@
           "configurations": {
             "production": {
               "browserTarget": "inventory:build:production"
+            },
+            "e2e": {
+              "proxyConfig": "proxy.conf.e2e.json"
             }
           }
         },
@@ -135,7 +138,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "inventory:serve"
+            "devServerTarget": "inventory:serve:e2e"
           },
           "configurations": {
             "production": {
