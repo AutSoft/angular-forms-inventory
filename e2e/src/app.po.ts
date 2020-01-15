@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get(browser.baseUrl) as Promise<any>;
   }
 
-  getTitleText() {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+  getItems() {
+    return element.all(by.css('tr'));
+  }
+
+  getDeleteButton(index: number) {
+    return element.all(by.css('[mattooltip = "Delete"]')).get(index);
   }
 }

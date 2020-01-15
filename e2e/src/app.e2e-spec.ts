@@ -11,10 +11,18 @@ describe('workspace-project App', () => {
     );
   });
 
-  it('should do nothing', () => {});
-
   beforeEach(() => {
     page = new AppPage();
+    return page.navigateTo();
+  });
+
+  it('should delete first item', async () => {
+    const numberOfItems = await page.getItems().count();
+
+    await page.getDeleteButton(0).click();
+    await browser.waitForAngular();
+
+    expect(await page.getItems().count()).toBe(numberOfItems - 1);
   });
 
   afterEach(async () => {
