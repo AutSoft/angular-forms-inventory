@@ -4,7 +4,7 @@
   </mat-form-field>
   <mat-form-field fxFlex>
     <mat-label>Currency</mat-label>
-    <mat-select formControlName="currency" >
+    <mat-select formControlName="currency" name="Currency">
       <mat-option [value]="null">-</mat-option>
       <mat-option *ngFor="let currency of currencies" [value]="currency.value">
         {{currency.label}}
