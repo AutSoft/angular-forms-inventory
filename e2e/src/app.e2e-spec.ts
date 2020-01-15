@@ -46,6 +46,11 @@ describe('workspace-project App', () => {
     expect(await page.getItems().count()).toBe(numberOfItems + 1);
   });
 
+  it('should list items', async () => {
+    await browser.driver.manage().window().setSize(1200, 950);
+    expect(await browser.imageComparison.checkFullPageScreen('item-list')).toEqual(0);
+  });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);

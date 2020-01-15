@@ -3,6 +3,7 @@
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 const { SpecReporter } = require('jasmine-spec-reporter');
+const { join } = require('path');
 
 /**
  * @type { import("protractor").Config }
@@ -29,5 +30,17 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   },
-  SELENIUM_PROMISE_MANAGER: false
+  SELENIUM_PROMISE_MANAGER: false,
+  plugins: [
+    {
+      package: 'protractor-image-comparison',
+      options: {
+        baselineFolder: join(process.cwd(), './baseline/'),
+        formatImageName: `{tag}-{logName}-{width}x{height}`,
+        screenshotPath: join(process.cwd(), '.tmp/'),
+        savePerInstance: true,
+        autoSaveBaseline: true
+      }
+    }
+  ]
 };
