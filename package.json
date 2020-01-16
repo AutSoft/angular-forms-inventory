@@ -4,11 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:e2e": "ng serve --configuration e2e",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "swagger": "nswag run inventory.nswag /runtime:NetCore30"
+    "swagger": "nswag run inventory.nswag /runtime:NetCore30",
+    "cypress": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +41,8 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cypress": "^3.8.2",
+    "cypress-plugin-snapshots": "^1.2.9",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
