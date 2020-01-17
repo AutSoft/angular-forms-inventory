@@ -1,9 +1,12 @@
 /// <reference types="Cypress" />
+import { fixCypressSpec } from '../support'
 
 describe('Inventory tests', () => {
   beforeEach(() => {
-    fetch('https://autsoftangulare2e.azurewebsites.net/api/Inventory/resetDatabase?password=123');
+    return fetch('https://autsoftangulare2e.azurewebsites.net/api/Inventory/resetDatabase?password=123');
   });
+
+  beforeEach(fixCypressSpec(__filename));
 
   it('should delete first item', () => {
     cy.visit('/');
@@ -49,6 +52,16 @@ describe('Inventory tests', () => {
       cy.contains('Save').click();
 
       cy.get(`table tbody tr`).should('have.length', prevList.length + 1);
+    });
+  });
+
+  it('should list items', () => {
+    cy.visit('/');
+
+    cy.wait(500);
+
+    cy.document().toMatchImageSnapshot({
+      imageConfig: { threshold: 0.05, thresholdType: 'percent' }
     });
   });
 });
