@@ -16,7 +16,7 @@ export class ItemComponent implements OnInit {
       type: new FormControl(undefined, Validators.required),
       description: new FormControl(undefined, Validators.required),
       count: new FormControl(undefined, [Validators.required, Validators.min(0)]),
-      countDate: new FormControl(undefined, Validators.required),
+      countDate: new FormControl(undefined, [Validators.required, CustomValidators.onlyWeekDays]),
       dimension: new FormGroup({
         width: new FormControl(),
         height: new FormControl(),
