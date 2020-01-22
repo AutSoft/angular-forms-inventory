@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { InventoryClient } from '../api/inventory.generated';
 import { CustomValidators } from '../custom-validators';
 
 @Component({
@@ -10,7 +12,7 @@ import { CustomValidators } from '../custom-validators';
 export class ItemComponent implements OnInit {
   itemForm: FormGroup;
 
-  constructor() {
+  constructor(private route: ActivatedRoute, private inventoryClient: InventoryClient) {
     this.itemForm = new FormGroup({
       name: new FormControl(undefined, Validators.required),
       type: new FormControl(undefined, Validators.required),
@@ -25,10 +27,18 @@ export class ItemComponent implements OnInit {
     });
   }
 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params.id) {
+        this.inventoryClient.getItemsById(params.id).subscribe(item => this.itemForm.patchValue(item));
+      } else {
+        this.itemForm.reset();
+      }
+    });
+  }
+
   save() {
     console.log(this.itemForm.value);
   }
-
-  ngOnInit() { }
 
 }
