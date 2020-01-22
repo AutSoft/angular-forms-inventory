@@ -4,25 +4,25 @@
       <mat-card-title>Item details</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form [formGroup]="itemForm">
         <mat-tab-group>
           <mat-tab label="Basic">
             <p>Basic data of the selected item.</p>
             <div fxLayout="column">
               <div fxLayout="row" fxLayoutGap="1rem">
                 <mat-form-field fxFlex>
-                  <input matInput placeholder="Name" >
+                  <input matInput placeholder="Name" formControlName="name">
                   <mat-error>
                     Name is required
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field fxFlex>
-                  <input matInput placeholder="Type">
+                  <input matInput placeholder="Type" formControlName="type">
                 </mat-form-field>
               </div>
 
               <mat-form-field>
-                <textarea matInput placeholder="Description" rows="5"></textarea>
+                <textarea matInput placeholder="Description" rows="5" formControlName="description"></textarea>
                 <mat-error>
                   Description is required
                 </mat-error>
@@ -34,39 +34,44 @@
             <div fxLayout="column">
               <div fxLayout="row" fxLayoutGap="1rem">
                 <mat-form-field fxFlex>
-                  <input type="number" matInput placeholder="Count">
-                  <mat-error>
+                  <input type="number" matInput placeholder="Count" formControlName="count">
+                  <mat-error *ngIf="itemForm.get('count').hasError('required')">
                     Count is required
                   </mat-error>
-                  <mat-error>
+                  <mat-error *ngIf="itemForm.get('count').hasError('min')">
                     Count must be non-negative
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field fxFlex>
-                  <input matInput placeholder="Count Date" [matDatepicker]="picker">
+                  <input matInput placeholder="Count Date" [matDatepicker]="picker" formControlName="countDate">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
-                  <mat-error>
+                  <mat-error *ngIf="itemForm.get('countDate').hasError('countDate')">
                     Count date is required
                   </mat-error>
-                  <mat-error>
+                  <mat-error *ngIf="itemForm.get('countDate').hasError('weekend')">
                     Aw, weekend
                   </mat-error>
                 </mat-form-field>
               </div>
             </div>
-            <div fxLayout="row" fxLayoutGap="1rem">
+            <div fxLayout="row" fxLayoutGap="1rem" formGroupName="dimension">
               <mat-form-field fxFlex>
-                <input type="number" matInput placeholder="Width">
+                <input type="number" matInput placeholder="Width" formControlName="width">
               </mat-form-field>
               <mat-icon fxFlexAlign="center">clear</mat-icon>
               <mat-form-field fxFlex>
-                <input type="number" matInput placeholder="Height">
+                <input type="number" matInput placeholder="Height" formControlName="height">
               </mat-form-field>
               <mat-icon fxFlexAlign="center">clear</mat-icon>
               <mat-form-field fxFlex>
-                <input type="number" matInput placeholder="Depth">
+                <input type="number" matInput placeholder="Depth" formControlName="depth">
               </mat-form-field>
+            </div>
+            <div>
+              <mat-error *ngIf="itemForm.get('dimension').hasError('invalidvolume')">
+                Invalid dimension
+              </mat-error>
             </div>
           </mat-tab>
         </mat-tab-group>
@@ -74,7 +79,7 @@
     </mat-card-content>
     <mat-card-actions fxLayout="row-reverse">
       <button mat-button routerLink="/">Cancel</button>
-      <button mat-button>Save</button>
+      <button mat-button [disabled]="itemForm.invalid" (click)="save()">Save</button>
     </mat-card-actions>
   </mat-card>
 </div>
