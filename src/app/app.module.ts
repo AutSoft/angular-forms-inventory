@@ -28,16 +28,14 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ItemComponent } from './item/item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { API_BASE_URL } from './api/inventory.generated';
-import { ReactiveFormsModule } from '@angular/forms';
-import { PriceInputComponent } from './price-input/price-input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     InventoryComponent,
-    ItemComponent,
-    PriceInputComponent
+    ItemComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +60,8 @@ import { PriceInputComponent } from './price-input/price-input.component';
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    FormsModule
   ],
   providers: [
   {

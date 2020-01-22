@@ -30,18 +30,18 @@ export class InventoryClient {
     getItems(pageSize?: number | null | undefined, page?: number | null | undefined, orderBy?: string | null | undefined, orderDirection?: OrderDirection2 | null | undefined): Observable<PagingResultDtoOfItem> {
         let url_ = this.baseUrl + "/Inventory?";
         if (pageSize !== undefined)
-            url_ += "PageSize=" + encodeURIComponent("" + pageSize) + "&"; 
+            url_ += "PageSize=" + encodeURIComponent("" + pageSize) + "&";
         if (page !== undefined)
-            url_ += "Page=" + encodeURIComponent("" + page) + "&"; 
+            url_ += "Page=" + encodeURIComponent("" + page) + "&";
         if (orderBy !== undefined)
-            url_ += "OrderBy=" + encodeURIComponent("" + orderBy) + "&"; 
+            url_ += "OrderBy=" + encodeURIComponent("" + orderBy) + "&";
         if (orderDirection !== undefined)
-            url_ += "OrderDirection=" + encodeURIComponent("" + orderDirection) + "&"; 
+            url_ += "OrderDirection=" + encodeURIComponent("" + orderDirection) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
-            responseType: "blob",			
+            responseType: "blob",
             headers: new HttpHeaders({
                 "Accept": "application/json"
             })
@@ -63,8 +63,8 @@ export class InventoryClient {
 
     protected processGetItems(response: HttpResponseBase): Observable<PagingResultDtoOfItem> {
         const status = response.status;
-        const responseBlob = 
-            response instanceof HttpResponse ? response.body : 
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
@@ -92,9 +92,9 @@ export class InventoryClient {
         let options_ : any = {
             body: content_,
             observe: "response",
-            responseType: "blob",			
+            responseType: "blob",
             headers: new HttpHeaders({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
@@ -114,8 +114,8 @@ export class InventoryClient {
 
     protected processCreateItem(response: HttpResponseBase): Observable<void> {
         const status = response.status;
-        const responseBlob = 
-            response instanceof HttpResponse ? response.body : 
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
@@ -135,12 +135,12 @@ export class InventoryClient {
         let url_ = this.baseUrl + "/Inventory/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
-            responseType: "blob",			
+            responseType: "blob",
             headers: new HttpHeaders({
                 "Accept": "application/json"
             })
@@ -162,8 +162,8 @@ export class InventoryClient {
 
     protected processGetItemsById(response: HttpResponseBase): Observable<Item> {
         const status = response.status;
-        const responseBlob = 
-            response instanceof HttpResponse ? response.body : 
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
@@ -186,7 +186,7 @@ export class InventoryClient {
         let url_ = this.baseUrl + "/Inventory/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
@@ -194,9 +194,9 @@ export class InventoryClient {
         let options_ : any = {
             body: content_,
             observe: "response",
-            responseType: "blob",			
+            responseType: "blob",
             headers: new HttpHeaders({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
@@ -216,8 +216,8 @@ export class InventoryClient {
 
     protected processUpdateItem(response: HttpResponseBase): Observable<void> {
         const status = response.status;
-        const responseBlob = 
-            response instanceof HttpResponse ? response.body : 
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
@@ -237,12 +237,12 @@ export class InventoryClient {
         let url_ = this.baseUrl + "/Inventory/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
-            responseType: "blob",			
+            responseType: "blob",
             headers: new HttpHeaders({
             })
         };
@@ -263,8 +263,8 @@ export class InventoryClient {
 
     protected processDeleteItem(response: HttpResponseBase): Observable<void> {
         const status = response.status;
-        const responseBlob = 
-            response instanceof HttpResponse ? response.body : 
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
@@ -283,12 +283,12 @@ export class InventoryClient {
     typeaheadType(query?: string | null | undefined): Observable<string[]> {
         let url_ = this.baseUrl + "/Inventory/Typeahead/Type?";
         if (query !== undefined)
-            url_ += "query=" + encodeURIComponent("" + query) + "&"; 
+            url_ += "query=" + encodeURIComponent("" + query) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
-            responseType: "blob",			
+            responseType: "blob",
             headers: new HttpHeaders({
                 "Accept": "application/json"
             })
@@ -310,8 +310,8 @@ export class InventoryClient {
 
     protected processTypeaheadType(response: HttpResponseBase): Observable<string[]> {
         const status = response.status;
-        const responseBlob = 
-            response instanceof HttpResponse ? response.body : 
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
             (<any>response).error instanceof Blob ? (<any>response).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
@@ -387,7 +387,7 @@ export class PagingResultDtoOfItem implements IPagingResultDtoOfItem {
         }
         data["currentPage"] = this.currentPage;
         data["totalCount"] = this.totalCount;
-        return data; 
+        return data;
     }
 }
 
@@ -398,14 +398,14 @@ export interface IPagingResultDtoOfItem {
 }
 
 export class Item implements IItem {
-    id?: number;
-    name?: string;
-    description?: string;
-    countDate!: Date;
-    count!: number;
-    type?: string;
-    dimension?: Dimension;
-    price?: Price;
+    id: number;
+    name: string;
+    description: string;
+    countDate: Date;
+    count: number;
+    type: string;
+    dimension: Dimension;
+    price: Price;
 
     constructor(data?: IItem) {
         if (data) {
@@ -413,8 +413,8 @@ export class Item implements IItem {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
-            this.dimension = data.dimension && !(<any>data.dimension).toJSON ? new Dimension(data.dimension) : <Dimension>this.dimension; 
-            this.price = data.price && !(<any>data.price).toJSON ? new Price(data.price) : <Price>this.price; 
+            this.dimension = data.dimension && !(<any>data.dimension).toJSON ? new Dimension(data.dimension) : <Dimension>this.dimension;
+            this.price = data.price && !(<any>data.price).toJSON ? new Price(data.price) : <Price>this.price;
         }
     }
 
@@ -448,7 +448,7 @@ export class Item implements IItem {
         data["type"] = this.type;
         data["dimension"] = this.dimension ? this.dimension.toJSON() : <any>undefined;
         data["price"] = this.price ? this.price.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -497,7 +497,7 @@ export class Dimension implements IDimension {
         data["width"] = this.width;
         data["height"] = this.height;
         data["depth"] = this.depth;
-        return data; 
+        return data;
     }
 }
 
@@ -538,7 +538,7 @@ export class Price implements IPrice {
         data = typeof data === 'object' ? data : {};
         data["value"] = this.value;
         data["currency"] = this.currency;
-        return data; 
+        return data;
     }
 }
 
@@ -565,10 +565,10 @@ export enum OrderDirection2 {
 
 export class ApiException extends Error {
     message: string;
-    status: number; 
-    response: string; 
+    status: number;
+    response: string;
     headers: { [key: string]: any; };
-    result: any; 
+    result: any;
 
     constructor(message: string, status: number, response: string, headers: { [key: string]: any; }, result: any) {
         super();
@@ -600,12 +600,12 @@ function blobToText(blob: any): Observable<string> {
             observer.next("");
             observer.complete();
         } else {
-            let reader = new FileReader(); 
-            reader.onload = event => { 
+            let reader = new FileReader();
+            reader.onload = event => {
                 observer.next((<any>event.target).result);
                 observer.complete();
             };
-            reader.readAsText(blob); 
+            reader.readAsText(blob);
         }
     });
 }
