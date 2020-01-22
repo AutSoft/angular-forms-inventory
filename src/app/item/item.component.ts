@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { InventoryClient } from '../api/inventory.generated';
+import { Currency, InventoryClient } from '../api/inventory.generated';
 import { CustomValidators } from '../custom-validators';
 
 @Component({
@@ -11,6 +11,9 @@ import { CustomValidators } from '../custom-validators';
 })
 export class ItemComponent implements OnInit {
   itemForm: FormGroup;
+  currencies: { value: number, label: string }[] = Object.keys(Currency)
+    .filter(x => !isNaN(+x))
+    .map(x => ({ value: +x, label: Currency[x] as string }));
 
   constructor(private route: ActivatedRoute, private inventoryClient: InventoryClient) {
     this.itemForm = new FormGroup({
@@ -23,7 +26,8 @@ export class ItemComponent implements OnInit {
         width: new FormControl(),
         height: new FormControl(),
         depth: new FormControl(),
-      }, CustomValidators.validVolume)
+      }, CustomValidators.validVolume),
+      price: new FormControl()
     });
   }
 

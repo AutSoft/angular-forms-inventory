@@ -30,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { API_BASE_URL } from './api/inventory.generated';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormsDemoComponent } from './forms-demo/forms-demo.component';
+import { PriceInputComponent } from './price-input/price-input.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FormsDemoComponent } from './forms-demo/forms-demo.component';
     NavComponent,
     InventoryComponent,
     ItemComponent,
-    FormsDemoComponent
+    FormsDemoComponent,
+    PriceInputComponent
   ],
   imports: [
     BrowserModule,

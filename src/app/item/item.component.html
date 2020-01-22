@@ -73,6 +73,9 @@
                 Invalid dimension
               </mat-error>
             </div>
+            <div fxLayout="row">
+              <app-price-input formControlName="price" [currencies]="currencies" fxFlex></app-price-input>
+            </div>
           </mat-tab>
         </mat-tab-group>
       </form>
