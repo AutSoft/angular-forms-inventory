@@ -29,13 +29,15 @@ import { ItemComponent } from './item/item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { API_BASE_URL } from './api/inventory.generated';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsDemoComponent } from './forms-demo/forms-demo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     InventoryComponent,
-    ItemComponent
+    ItemComponent,
+    FormsDemoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<form fxLayout="column" fxLayoutAlign="center center" #form="ngForm">
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="user.name" name="name" #nameControl="ngModel" required>
+    <mat-error>
+      Name is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Email" [(ngModel)]="user.email" name="email" email>
+    <mat-error>
+      Invalid email
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" matInput placeholder="Age" [(ngModel)]="user.age" name="age">
+  </mat-form-field>
+  <button mat-button color="primary" (click)="save()" [disabled]="form.invalid">Save</button>
+</form>
+<div>User: {{user | json}}</div>
+<div>Valid: {{nameControl.valid}}</div>
+<div>Value: {{nameControl.value}}</div>
+<div>Pristine: {{nameControl.pristine}}</div>
+<div>Dirty: {{nameControl.dirty}}</div>
